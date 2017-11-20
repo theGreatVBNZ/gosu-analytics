@@ -1,2 +1,4 @@
 # GOSU-analytics
-Useful queries and notebooks
+
+### Где брать данные?
+https://www.opendota.com/explorer
