@@ -1,5 +1,6 @@
 import sys
 import os
+from functools import lru_cache
 
 import requests
 import pandas
@@ -25,3 +26,15 @@ def show_dota2_map(use='local'):
         path_background_image = os.path.abspath(os.path.join('static', 'minimap_707.png'))
         map_img = plt.imread(path_background_image)
     plt.imshow(map_img, extent=(64, 127+64, 64, 127+64))
+
+
+@lru_cache()
+def load_hero_stats_table():
+    hero_stats_url = 'https://api.opendota.com/api/heroStats'
+    resp = requests.get(hero_stats_url)
+    resp.raise_for_status()
+    data = resp.json()
+    if resp.status_code == 400 and data is not None:
+        raise AttributeError('OdotaError')
+    df_heroes = pandas.DataFrame(data)
+    return df_heroes
