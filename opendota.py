@@ -23,9 +23,10 @@ def show_dota2_map(use='local'):
             'b/b7/Minimap_7.07.png?version=6257157931ee53b8de74e2e0adfac8c6'
         )
     elif use == 'local':
-        path_background_image = os.path.abspath(os.path.join('static', 'minimap_707.png'))
+        path_background_image = os.path.abspath(os.path.join('static', 'minimap_720.png'))
         map_img = plt.imread(path_background_image)
-    plt.imshow(map_img, extent=(64, 127+64, 64, 127+64))
+    # plt.imshow(map_img, extent=(64, 127+64, 64, 127+64))
+    plt.imshow(map_img, extent=(61, 127+64, 61, 127+64))
 
 
 @lru_cache()
